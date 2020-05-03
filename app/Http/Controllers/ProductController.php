@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use App\Http\ProductRequest;
+use App\Http\Requests\ProductRequest;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -41,7 +41,10 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         $data = $request->all();
-        $data['slug']=Str 
+        $data['slug'] = Str::slug($request->name);
+
+        Product::create($data);
+        return redirect()->route('products.index');
     }
 
     /**
@@ -63,7 +66,11 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $item = Product::findOrFail($id);
+
+        return view('pages.products.edit')->with([
+            'item' => $item
+        ]);
     }
 
     /**
