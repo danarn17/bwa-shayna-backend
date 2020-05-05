@@ -3,7 +3,7 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        <strong>Tambah Barang</strong>
+        <strong>Edit Barang</strong>
         <small>{{ $item->name }}</small>
     </div>
     <div class="card-body card-block">
