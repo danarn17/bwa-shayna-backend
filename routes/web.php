@@ -15,9 +15,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'DashboardController@index')->name('dashboard');
 
-Auth::routes(['register' => false]);
+Auth::routes(['register' => true]);
 
 
 Route::get('products/{id}/gallery', 'ProductController@gallery')->name('products.gallery');
 Route::resource('products', 'ProductController');
 Route::resource('product-galleries', 'ProductGalleryController');
+Route::get('products/{id}/set-status', 'TransactionController@setStatus')->name('transaction.status');
+Route::resource('transaction', 'TransactionController');
